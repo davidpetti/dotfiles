@@ -14,6 +14,8 @@ return {
                 null_ls.builtins.formatting.isort,
 
                 null_ls.builtins.formatting.rustfmt,
+
+                null_ls.builtins.formatting.clang_format,
             },
 
             on_attach = function(client, bufnr)
