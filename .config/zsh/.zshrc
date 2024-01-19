@@ -18,6 +18,7 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 
 # Adding Files
 zsh_add_file "zsh-aliases"
+zsh_add_file "zsh-exports"
 
 # Starship Prompt
 eval "$(starship init zsh)"
