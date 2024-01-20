@@ -1,0 +1,5 @@
+.dotfiles/
+.config/nvim/lazy-lock.json
+.config/nvim/lua/.luarc.josn
+.config/tmux/plugins/**
+.config/zsh/plugins/**
