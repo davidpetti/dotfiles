@@ -3,7 +3,7 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias rm="rm -i"
 
-alias ls="exa -la"
+alias ls="eza -la"
 alias cat="bat"
 alias vim="nvim"
 
