@@ -22,3 +22,6 @@ zsh_add_file "zsh-exports"
 
 # Starship Prompt
 eval "$(starship init zsh)"
+
+# Zoxide Setup
+eval "$(zoxide init zsh)"
