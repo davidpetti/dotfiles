@@ -4,7 +4,8 @@ alias mv="mv -i"
 alias rm="rm -i"
 
 alias ls="eza -la"
-alias cd="z"
+alias tree="eza --tree -a"
+alias "cd"="z"
 alias cat="bat"
 alias vim="nvim"
 
