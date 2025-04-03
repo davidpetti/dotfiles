@@ -77,20 +77,43 @@
 
 ;;; C-c as general purpose escape key sequence.
 ;;;
-(defun my-esc (prompt)
-  "Functionality for escaping generally.  Includes exiting Evil insert state and C-g binding. "
-  (cond
-   ;; If we're in one of the Evil states that defines [escape] key, return [escape] so as
-   ;; Key Lookup will use it.
-   ((or (evil-insert-state-p) (evil-normal-state-p) (evil-replace-state-p) (evil-visual-state-p)) [escape])
-   ;; This is the best way I could infer for now to have C-c work during evil-read-key.
-   ;; Note: As long as I return [escape] in normal-state, I don't need this.
-   ;;((eq overriding-terminal-local-map evil-read-key-map) (keyboard-quit) (kbd ""))
-   (t (kbd "C-g"))))
-(define-key key-translation-map (kbd "C-c") 'my-esc)
-;; Works around the fact that Evil uses read-event directly when in operator state, which
-;; doesn't use the key-translation-map.
-(define-key evil-operator-state-map (kbd "C-c") 'keyboard-quit)
-;; Not sure what behavior this changes, but might as well set it, seeing the Elisp manual's
-;; documentation of it.
-(set-quit-char "C-c")
+;; (defun my-esc (prompt)
+;;   "Functionality for escaping generally.  Includes exiting Evil insert state and C-g binding. "
+;;   (cond
+;;    ;; If we're in one of the Evil states that defines [escape] key, return [escape] so as
+;;    ;; Key Lookup will use it.
+;;    ((or (evil-insert-state-p) (evil-normal-state-p) (evil-replace-state-p) (evil-visual-state-p)) [escape])
+;;    ;; This is the best way I could infer for now to have C-c work during evil-read-key.
+;;    ;; Note: As long as I return [escape] in normal-state, I don't need this.
+;;    ;;((eq overriding-terminal-local-map evil-read-key-map) (keyboard-quit) (kbd ""))
+;;    (t (kbd "C-g"))))
+;; (define-key key-translation-map (kbd "C-c") 'my-esc)
+;; ;; Works around the fact that Evil uses read-event directly when in operator state, which
+;; ;; doesn't use the key-translation-map.
+;; (define-key evil-operator-state-map (kbd "C-c") 'keyboard-quit)
+;; ;; Not sure what behavior this changes, but might as well set it, seeing the Elisp manual's
+;; ;; documentation of it.
+;; (set-quit-char "C-c")
+
+;; (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+;;       TeX-source-correlate-start-server t)
+
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+                                                                                       TeX-source-correlate-start-server t)
+
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+
+;; Kepp cursor 8 from bottom/top
+(setq scroll-margin 8)
+
+;; LaTeX setup
+(map! :leader
+      :desc "Latex Complie and view" "\ l" #'TeX-command-run-all)
+
+;; Treemacs config
+(map! :leader
+      :desc "Toggle treemacs file viewer" "e e" #'treemacs
+      :desc "Vterm popup toggle"     "v t" #'+vterm/toggle)
+;; :desc "Open directory in neotree"  "d n" #'neotree-dir)
+
+(setq TeX-view-program-selection '((output-pdf "PDF Tools")))
