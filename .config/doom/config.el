@@ -2,6 +2,7 @@
 (setq display-line-numbers-type 'relative)
 (setq scroll-margin 8)
 (setq org-directory "~/org/")
+(doom/set-frame-opacity 60)
 
 (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
       TeX-source-correlate-start-server t)
