@@ -3,3 +3,4 @@
 .config/nvim/lua/.luarc.josn
 .config/tmux/plugins/**
 .config/zsh/plugins/**
+.config/doom/config.el
