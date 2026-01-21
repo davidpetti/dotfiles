@@ -3,7 +3,7 @@
 
 * TABLE OF CONTENTS :toc:
 - [[#basic-doom][Basic DOOM]]
-- [[#cc][C/C++]]
+- [[#apheleia][Apheleia]]
 - [[#latex][LaTeX]]
 - [[#org][Org]]
   - [[#headers][Headers]]
@@ -18,17 +18,18 @@
 (setq display-line-numbers-type 'relative)
 (setq scroll-margin 8)
 ;; (doom/set-frame-opacity 60)
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode sql-mode))
 #+end_src
 
-* C/C++
+* Apheleia
 
 #+begin_src emacs-lisp
-;; (after! ccls
-;;   (setq ccls-initialization-options '(:index (:comments 2) :completion (:detailedLabel t))
-;;         ccls-args '("-log-file=/tmp/ccls.log", "-std=c++23")
-;; ;; -isystem/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15 -isystem/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15/aarch64-apple-darwin24 -isystem/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15/backward -isystem/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/include -isystem/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/include-fixed -isystem/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include -isystem/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/System/Library/Frameworks")
-;;         ccls-executable "ccls")
-;;   (set-lsp-priority! 'ccls 0)) ; optional as ccls is the default in Doom
+(after! apheleia
+  (setf (alist-get 'c-mode apheleia-mode-alist) 'clang-format
+        (alist-get 'c++-mode apheleia-mode-alist) 'clang-format))
+
+(setq apheleia-remote-algorithm 'remote)
 #+end_src
 
 * LaTeX
