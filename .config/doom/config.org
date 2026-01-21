@@ -5,6 +5,7 @@
 - [[#basic-doom][Basic DOOM]]
 - [[#apheleia][Apheleia]]
 - [[#latex][LaTeX]]
+- [[#tramp][TRAMP]]
 - [[#org][Org]]
   - [[#headers][Headers]]
   - [[#agenda][Agenda]]
@@ -41,6 +42,32 @@
 
 (map! :leader
       :desc "Latex Complie and view" "\ l" #'TeX-command-run-all)
+#+end_src
+
+* TRAMP
+
+#+begin_src emacs-lisp
+(setq tramp-default-method "ssh")
+(setq tramp-verbose 1)
+
+;; Disable version control checks on remote files
+(setq vc-ignore-dir-regexp
+      (format "\\(%s\\)\\|\\(%s\\)"
+              vc-ignore-dir-regexp
+              tramp-file-name-regexp))
+
+;; Disable lock files remotely
+(setq remote-file-name-inhibit-locks t)
+
+;; Disable backups and autosaves for TRAMP
+(add-to-list 'backup-directory-alist
+             (cons tramp-file-name-regexp nil))
+(add-to-list 'auto-save-file-name-transforms
+             (list tramp-file-name-regexp nil t))
+
+;; Use ControlMaster for SSH
+(setq tramp-ssh-controlmaster-options
+      "-o ControlMaster=auto -o ControlPersist=yes")
 #+end_src
 
 * Org
