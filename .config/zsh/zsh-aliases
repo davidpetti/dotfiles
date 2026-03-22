@@ -13,3 +13,4 @@ alias vim="nvim"
 # alias pip="pip3"
 
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias lazyconfig='/usr/bin/lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
