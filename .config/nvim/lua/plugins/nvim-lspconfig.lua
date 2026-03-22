@@ -2,31 +2,54 @@ return {
 	"neovim/nvim-lspconfig",
 	config = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		local lspconfig = require("lspconfig")
-		lspconfig.lua_ls.setup({
+
+		-- Server Definitions
+		vim.lsp.config("lua_ls", {
 			capabilities = capabilities,
 		})
-		lspconfig.ts_ls.setup({
+
+		vim.lsp.config("clangd", {
 			capabilities = capabilities,
 		})
-		lspconfig.gopls.setup({
+
+		vim.lsp.config("rust_analyzer", {
 			capabilities = capabilities,
 		})
-		lspconfig.rust_analyzer.setup({
+
+		vim.lsp.config("gopls", {
 			capabilities = capabilities,
 		})
-		lspconfig.pyright.setup({
+
+		vim.lsp.config("pyright", {
 			capabilities = capabilities,
 		})
-		lspconfig.clangd.setup({
-			capabilities = capabilities,
-		})
-		lspconfig.arduino_language_server.setup({
-			capabilities = capabilities,
-		})
+
+		-- Enable servers
+		vim.lsp.enable("lua_ls")
+		vim.lsp.enable("clangd")
+		vim.lsp.enable("rust_analyzer")
+		vim.lsp.enable("gopls")
+		vim.lsp.enable("pyright")
+
+		-- Keymaps
+		local opts = { noremap = true, silent = true }
 
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+
+        vim.o.updatetime = 250
+        vim.api.nvim_create_autocmd("CursorHold", {
+            callback = function()
+                vim.diagnostic.open_float(nil, {
+                    focusable = false,
+                    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+                    border = "rounded",
+                    source = "if_many",
+                    scope = "cursor",
+                })
+            end,
+        })
 	end,
 }
