@@ -1,5 +1,16 @@
 return {
 	"nvimtools/none-ls.nvim",
+	keys = {
+		{
+			"<leader>gf",
+			function()
+				vim.lsp.buf.format()
+			end,
+			mode = "n",
+			desc = "Format buffer",
+		},
+	},
+
 	config = function()
 		local null_ls = require("null-ls")
 
@@ -22,15 +33,11 @@ return {
 						group = augroup,
 						buffer = bufnr,
 						callback = function()
-							-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-							-- on later neovim version, you should use vim.lsp.buf.format({ async = false }) instead
 							vim.lsp.buf.format({ async = false })
 						end,
 					})
 				end
 			end,
 		})
-
-		vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 	end,
 }

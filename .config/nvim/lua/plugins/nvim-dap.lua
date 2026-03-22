@@ -1,7 +1,7 @@
 return {
-    "mfussenegger/nvim-dap",
-    config = function()
-        vim.keymap.set("n", "<leader>db", ":DapToggleBreakpoint<CR>")
-        vim.keymap.set("n", "<leader>dr", ":DapContinue<CR>")
-    end,
+	"mfussenegger/nvim-dap",
+	keys = {
+		{ "<leader>db", ":DapToggleBreakpoint<CR>", mode = "n", desc = "DAP toggle breakpoint" },
+		{ "<leader>dr", ":DapContinue<CR>", mode = "n", desc = "DAP continue" },
+	},
 }
