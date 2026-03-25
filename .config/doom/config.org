@@ -4,6 +4,7 @@
 * TABLE OF CONTENTS :toc:
 - [[#basic-doom][Basic DOOM]]
 - [[#apheleia][Apheleia]]
+- [[#cc][C/C++]]
 - [[#latex][LaTeX]]
 - [[#tramp][TRAMP]]
 - [[#org][Org]]
@@ -31,6 +32,12 @@
         (alist-get 'c++-mode apheleia-mode-alist) 'clang-format))
 
 (setq apheleia-remote-algorithm 'remote)
+#+end_src
+
+* C/C++
+
+#+begin_src emacs-lisp
+(require 'dap-cpptools)
 #+end_src
 
 * LaTeX
