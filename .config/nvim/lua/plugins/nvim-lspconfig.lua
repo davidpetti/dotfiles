@@ -34,10 +34,18 @@ return {
 		-- Keymaps
 		local opts = { noremap = true, silent = true }
 
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        -- Following use telescope with same binds
+		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        -- vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
+        vim.keymap.set("n", "gI", vim.lsp.buf.implementation)
+        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
+
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
+
+		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 
         vim.o.updatetime = 250
         vim.api.nvim_create_autocmd("CursorHold", {
