@@ -21,7 +21,7 @@ return {
 		{
 			"<leader>fs",
 			function()
-                require("telescope.builtin").current_buffer_fuzzy_find()
+				require("telescope.builtin").current_buffer_fuzzy_find()
 			end,
 			mode = "n",
 			desc = "fuzzy find string in current buffer",
@@ -53,7 +53,7 @@ return {
 		{
 			"<leader>ge",
 			function()
-                require("telescope.builtin").diagnostics()
+				require("telescope.builtin").diagnostics()
 			end,
 			mode = "n",
 			desc = "LSP get diagnostics",
@@ -61,7 +61,7 @@ return {
 		{
 			"<leader>g?",
 			function()
-                require("telescope.builtin").keymaps()
+				require("telescope.builtin").keymaps()
 			end,
 			mode = "n",
 			desc = "Keymaps",
@@ -69,7 +69,7 @@ return {
 		{
 			"<leader>gx",
 			function()
-                require("telescope.builtin").commands()
+				require("telescope.builtin").commands()
 			end,
 			mode = "n",
 			desc = "Commands",
@@ -77,7 +77,7 @@ return {
 		{
 			"<leader>gs",
 			function()
-                require("telescope.builtin").git_status()
+				require("telescope.builtin").git_status()
 			end,
 			mode = "n",
 			desc = "Git status",
@@ -85,15 +85,23 @@ return {
 		{
 			"<leader>gb",
 			function()
-                require("telescope.builtin").git_branches()
+				require("telescope.builtin").git_branches()
 			end,
 			mode = "n",
 			desc = "Git branches",
 		},
 		{
+			"<leader>rr",
+			function()
+				require("telescope").extensions.refactoring.refactors()
+			end,
+			mode = "v",
+			desc = "Refactor Menu",
+		},
+		{
 			"<leader>gc",
 			function()
-                require("telescope.builtin").git_commits()
+				require("telescope.builtin").git_commits()
 			end,
 			mode = "n",
 			desc = "Git commits",
