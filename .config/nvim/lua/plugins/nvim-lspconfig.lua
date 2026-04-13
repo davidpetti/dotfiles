@@ -24,6 +24,10 @@ return {
 			capabilities = capabilities,
 		})
 
+		vim.lsp.config("zls", {
+			capabilities = capabilities,
+		})
+
 		vim.lsp.config("cmake", {
 			cmd = { "cmake-language-server" },
 			filetypes = { "cmake" },
@@ -40,6 +44,7 @@ return {
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("pyright")
 		vim.lsp.enable("cmake")
+		vim.lsp.enable("zls")
 
 		-- Keymaps
 		local opts = { noremap = true, silent = true }
