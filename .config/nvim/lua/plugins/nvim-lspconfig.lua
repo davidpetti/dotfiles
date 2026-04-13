@@ -24,40 +24,50 @@ return {
 			capabilities = capabilities,
 		})
 
+		vim.lsp.config("cmake", {
+			cmd = { "cmake-language-server" },
+			filetypes = { "cmake" },
+			root_markers = { "CMakeLists.txt", ".git" },
+			init_options = {
+				buildDirectory = "build",
+			},
+		})
+
 		-- Enable servers
 		vim.lsp.enable("lua_ls")
 		vim.lsp.enable("clangd")
 		vim.lsp.enable("rust_analyzer")
 		vim.lsp.enable("gopls")
 		vim.lsp.enable("pyright")
+		vim.lsp.enable("cmake")
 
 		-- Keymaps
 		local opts = { noremap = true, silent = true }
 
-        -- Following use telescope with same binds
+		-- Following use telescope with same binds
 		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        -- vim.keymap.set("n", "gr", vim.lsp.buf.references)
+		-- vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
-        vim.keymap.set("n", "gI", vim.lsp.buf.implementation)
-        vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
+		vim.keymap.set("n", "gI", vim.lsp.buf.implementation)
+		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
 
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        -- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
+		-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
 
 		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
 
-        vim.o.updatetime = 250
-        vim.api.nvim_create_autocmd("CursorHold", {
-            callback = function()
-                vim.diagnostic.open_float(nil, {
-                    focusable = false,
-                    close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                    border = "rounded",
-                    source = "if_many",
-                    scope = "cursor",
-                })
-            end,
-        })
+		vim.o.updatetime = 250
+		vim.api.nvim_create_autocmd("CursorHold", {
+			callback = function()
+				vim.diagnostic.open_float(nil, {
+					focusable = false,
+					close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+					border = "rounded",
+					source = "if_many",
+					scope = "cursor",
+				})
+			end,
+		})
 	end,
 }
