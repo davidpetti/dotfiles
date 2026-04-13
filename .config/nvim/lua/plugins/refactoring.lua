@@ -10,10 +10,38 @@ return {
 		{
 			"<leader>re",
 			function()
-				require("refactoring").refactor("Extract Function")
+				return require("refactoring").refactor("Extract Function")
 			end,
-			mode = "v",
+			mode = "x",
+            expr = true,
 			desc = "Extract Function",
+		},
+		{
+			"<leader>rv",
+			function()
+				return require("refactoring").refactor("Extract Variable")
+			end,
+			mode = "x",
+            expr = true,
+			desc = "Extract Variable",
+		},
+		{
+			"<leader>ri",
+			function()
+				return require("refactoring").refactor("Inline Variable")
+			end,
+			mode = "x",
+            expr = true,
+			desc = "Inline Variable",
+		},
+		{
+			"<leader>rI",
+			function()
+				return require("refactoring").refactor("Inline Function")
+			end,
+			mode = "x",
+            expr = true,
+			desc = "Inline Function",
 		},
     },
 }
