@@ -29,6 +29,7 @@ return {
 		})
 
 		vim.lsp.config("cmake", {
+			capabilities = capabilities,
 			cmd = { "cmake-language-server" },
 			filetypes = { "cmake" },
 			root_markers = { "CMakeLists.txt", ".git" },
@@ -46,21 +47,28 @@ return {
 		vim.lsp.enable("cmake")
 		vim.lsp.enable("zls")
 
-		-- Keymaps
-		local opts = { noremap = true, silent = true }
+		-- Buffer-local LSP keymaps
+		vim.api.nvim_create_autocmd("LspAttach", {
+			callback = function(ev)
+				local opts = { buffer = ev.buf, noremap = true, silent = true }
 
-		-- Following use telescope with same binds
-		-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		-- vim.keymap.set("n", "gr", vim.lsp.buf.references)
+				-- Following use telescope with same binds
+				-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+				-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
-		vim.keymap.set("n", "gI", vim.lsp.buf.implementation)
-		vim.keymap.set("n", "gt", vim.lsp.buf.type_definition)
+				vim.keymap.set("n", "gI", vim.lsp.buf.implementation, opts)
+				vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
 
-		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-		-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help)
+				vim.keymap.set("n", "K", function()
+					vim.lsp.buf.hover()
+				end, vim.tbl_extend("force", opts, { desc = "LSP Hover" }))
 
-		vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+				-- vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+				vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+				vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+			end,
+		})
 
 		vim.o.updatetime = 250
 		vim.api.nvim_create_autocmd("CursorHold", {
