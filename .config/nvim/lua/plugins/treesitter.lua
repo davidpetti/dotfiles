@@ -10,30 +10,6 @@ return {
 			install_dir = vim.fn.stdpath("data") .. "/site",
 		})
 
-		ts.install({
-			"lua",
-			"javascript",
-			"typescript",
-			"go",
-			"python",
-			"java",
-			"html",
-			"css",
-			"json",
-			"tsx",
-			"c",
-			"vim",
-			"vimdoc",
-			"rust",
-			"markdown",
-			"markdown_inline",
-			"yaml",
-			"bash",
-			"dockerfile",
-			"gitignore",
-			"toml",
-		})
-
 		vim.api.nvim_create_autocmd("FileType", {
 			callback = function(ev)
 				local lang = vim.treesitter.language.get_lang(vim.bo[ev.buf].filetype)
