@@ -20,6 +20,11 @@ zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_file "zsh-aliases"
 zsh_add_file "zsh-exports"
 
+# Auto-start tmux if not already inside one
+if [ -z "$TMUX" ]; then
+  tmux attach-session -t main || tmux new-session -s main
+fi
+
 # Starship Prompt
 eval "$(starship init zsh)"
 
