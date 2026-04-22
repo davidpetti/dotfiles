@@ -1,47 +1,54 @@
 return {
 	"ThePrimeagen/refactoring.nvim",
 	dependencies = {
-		"nvim-lua/plenary.nvim",
-		"nvim-treesitter/nvim-treesitter",
+		"lewis6991/async.nvim",
 	},
 	lazy = false,
 	opts = {},
-    keys = {
+	keys = {
 		{
 			"<leader>re",
 			function()
-				return require("refactoring").refactor("Extract Function")
+				return require("refactoring").extract_func()
 			end,
 			mode = "x",
-            expr = true,
+			expr = true,
 			desc = "Extract Function",
 		},
 		{
 			"<leader>rv",
 			function()
-				return require("refactoring").refactor("Extract Variable")
+				return require("refactoring").extract_var()
 			end,
 			mode = "x",
-            expr = true,
+			expr = true,
 			desc = "Extract Variable",
 		},
 		{
 			"<leader>ri",
 			function()
-				return require("refactoring").refactor("Inline Variable")
+				return require("refactoring").inline_var()
 			end,
-			mode = "x",
-            expr = true,
+			mode = { "n", "x" },
+			expr = true,
 			desc = "Inline Variable",
 		},
 		{
 			"<leader>rI",
 			function()
-				return require("refactoring").refactor("Inline Function")
+				return require("refactoring").inline_func()
 			end,
-			mode = "x",
-            expr = true,
+			mode = { "n", "x" },
+			expr = true,
 			desc = "Inline Function",
 		},
-    },
+		{
+			"<leader>rs",
+			function()
+				require("refactoring").select_refactor()
+			end,
+			mode = { "n", "x" },
+			desc = "Select Refactor",
+		},
+	},
 }
