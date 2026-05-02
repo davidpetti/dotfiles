@@ -17,3 +17,7 @@ export LESS_TERMCAP_ZV=$'\e[75m'
 export LESS_TERMCAP_ZO=$'\e[73m'
 export LESS_TERMCAP_ZW=$'\e[75m'
 export MANPAGER='less'
+
+# Go workspace
+export GOPATH="$HOME/.local/share/go"
+export PATH="$GOPATH/bin:$PATH"
