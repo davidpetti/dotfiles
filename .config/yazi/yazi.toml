@@ -1,0 +1,30 @@
+[opener]
+edit = [
+  { run = 'nvim "$@"', block = true, for = "unix" },
+]
+
+open = [
+  { run = 'xdg-open "$@"', desc = "Open", for = "linux" },
+]
+
+reveal = [
+  { run = 'xdg-open "$(dirname "$1")"', desc = "Reveal", for = "linux" },
+]
+
+play = [
+  { run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+
+pdf = [
+  { run = 'zathura "$@"', orphan = true, for = "unix" },
+  { run = 'xdg-open "$@"', orphan = true, for = "linux" },
+]
+
+image = [
+  { run = 'imv "$@"', orphan = true, for = "linux" },
+  { run = 'xdg-open "$@"', orphan = true, for = "linux" },
+]
+
+archive = [
+  { run = 'ouch decompress "$@"', desc = "Extract here", for = "unix" },
+]
