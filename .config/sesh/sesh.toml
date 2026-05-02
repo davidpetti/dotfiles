@@ -9,6 +9,11 @@ path = "~/"
 startup_command = "yazi"
 
 [[session]]
+name = "repos"
+path = "~/repos"
+startup_command = "yazi"
+
+[[session]]
 name = "tmux config"
 path = "~/.config/tmux"
 startup_command = "nvim tmux.conf"
