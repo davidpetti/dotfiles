@@ -1,0 +1,22 @@
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "yazi"
+
+[[session]]
+name = "Home"
+path = "~/"
+startup_command = "yazi"
+
+[[session]]
+name = "tmux config"
+path = "~/.config/tmux"
+startup_command = "nvim tmux.conf"
+
+[[session]]
+name = "neovim config"
+path = "~/.config/nvim"
+startup_command = "nvim . -c ':lua require(\"telescope.builtin\").find_files()'"
+
+[default_session]
+startup_command = "nvim . -c ':lua require(\"telescope.builtin\").find_files()'"
