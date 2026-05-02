@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+target="$1"
+
+if [ -z "$target" ]; then
+    exit 1
+fi
+
+if [ ! -d "$target" ]; then
+    target="$(dirname "$target")"
+fi
+
+sesh connect "$target"

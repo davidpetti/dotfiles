@@ -1,0 +1,4 @@
+[[mgr.prepend_keymap]]
+on = [ "g", "s" ]
+run = 'shell --confirm --block -- ~/.local/bin/yazi-sesh "%0"'
+desc = "Open hovered dir with sesh (tmux)"
